@@ -59,7 +59,7 @@ public class UrlController {
                 .build();
     }
 
-    @PutMapping("/update-expiry")
+    @PutMapping("/api/update-expiry")
     public ResponseEntity<String> updateUrlExpiry(@RequestBody UpdateUrlRequest request) {
         String username = getCurrentUsername();
         urlService.updateExpiry(username, request);
