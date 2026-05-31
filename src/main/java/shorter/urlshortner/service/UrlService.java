@@ -128,4 +128,10 @@ public class UrlService {
         User user = userRepo.findByUsername(username).orElseThrow();
         return shortUrlRepo.findByUser(user);
     }
+    public void incrementClickCount(String shortCode) {
+        shortUrlRepo.findByShortCode(shortCode).ifPresent(url -> {
+            url.setClickCount(url.getClickCount() + 1);
+            shortUrlRepo.save(url);
+        });
+    }
 }

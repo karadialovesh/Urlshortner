@@ -50,7 +50,7 @@ public class UrlController {
         if (url.expiryAt().isBefore(LocalDateTime.now())) {
             throw new RuntimeException("This URL has expired");
         }
-
+        urlService.incrementClickCount(shortCode);
         return ResponseEntity.status(HttpStatus.FOUND)
                 .location(URI.create(url.originalUrl()))
                 .build();
