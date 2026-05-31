@@ -27,7 +27,7 @@ public class QrCodeController {
             return ResponseEntity.notFound().build();
         }
 
-        String fullUrl = "http://localhost:8080/u/" + shortCode; // or your domain
+        String fullUrl = "http://localhost:8080/u/" + shortCode;
         byte[] qrImage = QrCodeGenerator.generateQrCode(fullUrl, 250, 250);
 
         return ResponseEntity.ok()

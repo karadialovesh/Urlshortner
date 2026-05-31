@@ -47,7 +47,7 @@ public class UrlService {
     public ShortenUrlResponse shortenUrl(ShortenUrlRequest request, String username) {
         User user = userRepo.findByUsername(username).orElseThrow();
 
-        // ✅ Check for duplicate (same user, same original URL)
+
         Optional<ShortUrl> existing = shortUrlRepo.findByUserAndOriginalUrl(user, request.getOriginalUrl());
         if (existing.isPresent()) {
             return new ShortenUrlResponse(
@@ -56,7 +56,7 @@ public class UrlService {
             );
         }
 
-        // ✅ Handle custom code if provided
+
         String shortCode;
         if (request.getCustomCode() != null && !request.getCustomCode().isBlank()) {
             String customCode = request.getCustomCode().trim().toLowerCase();
@@ -111,12 +111,12 @@ public class UrlService {
         ShortUrl url = shortUrlRepo.findByShortCode(request.getShortCode())
                 .orElseThrow(() -> new RuntimeException("Short URL not found"));
 
-        // ✅ Check ownership
+
         if (!url.getOwnerUsername().equals(username)) {
             throw new RuntimeException("Unauthorized to update this URL");
         }
 
-        // ✅ Update expiry
+
         url.setExpiryAt(request.getNewExpiryAt());
         shortUrlRepo.save(url);
 

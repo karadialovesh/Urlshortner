@@ -23,7 +23,6 @@ public class RateLimitingInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws IOException {
 
-        // Only limit POST /api/shorten
         if (request.getMethod().equals("POST") && request.getRequestURI().equals("/api/shorten")) {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             if (auth == null || !auth.isAuthenticated()) return true;

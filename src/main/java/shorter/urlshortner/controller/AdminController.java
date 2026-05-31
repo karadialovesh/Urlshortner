@@ -18,13 +18,13 @@ public class AdminController {
 
     private final ShortUrlRepository shortUrlRepo;
 
-    // ✅ 1. Get all short URLs
+
     @GetMapping("/urls")
     public ResponseEntity<List<ShortUrl>> getAllUrls() {
         return ResponseEntity.ok(shortUrlRepo.findAll());
     }
 
-    // ✅ 2. Delete short URL by ID
+
     @DeleteMapping("/url/{id}")
     public ResponseEntity<String> deleteUrl(@PathVariable Long id) {
         if (!shortUrlRepo.existsById(id)) {
@@ -34,7 +34,7 @@ public class AdminController {
         return ResponseEntity.ok("Short URL deleted successfully.");
     }
 
-    // ✅ 3. Get stats
+
     @GetMapping("/stats")
     public ResponseEntity<Map<String, Object>> getStats() {
         List<ShortUrl> all = shortUrlRepo.findAll();

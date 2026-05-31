@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class ShortenUrlRequest {
     private String originalUrl;
-    private String customCode; // optional field
+    private String customCode; //
 }

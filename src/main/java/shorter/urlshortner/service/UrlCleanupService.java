@@ -13,9 +13,9 @@ public class UrlCleanupService {
 
     private final ShortUrlRepository shortUrlRepository;
 
-    @Scheduled(cron = "0 0 2 * * *") // Runs daily at 2:00 AM
+    @Scheduled(cron = "0 0 2 * * *")
     public void deleteOldExpiredUrls() {
-        LocalDateTime cutoff = LocalDateTime.now().minusYears(1); // only delete if expired over a year ago
+        LocalDateTime cutoff = LocalDateTime.now().minusYears(1);
         int deletedCount = shortUrlRepository.deleteExpiredAndAgedUrls(cutoff);
         System.out.println("🧹 Deleted " + deletedCount + " expired URLs older than 1 year");
     }

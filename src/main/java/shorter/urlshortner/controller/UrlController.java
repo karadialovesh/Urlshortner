@@ -44,10 +44,7 @@ public class UrlController {
 
     @GetMapping("/u/{shortCode}")
     public ResponseEntity<?> redirect(@PathVariable String shortCode) {
-//        String original = urlService.redirectToOriginal(shortCode);//redis
-//        return ResponseEntity.status(HttpStatus.FOUND)
-//                .location(URI.create(original))
-//                .build();   //redis
+
         CachedShortUrl url = urlService.getOriginalUrlFromCache(shortCode);
 
         if (url.expiryAt().isBefore(LocalDateTime.now())) {

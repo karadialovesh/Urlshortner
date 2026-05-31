@@ -165,11 +165,12 @@
 							"raw": "{\n    \"shortCode\": \"goog\",\n    \"newExpiryAt\": \"2026-12-31T23:59:59\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/update-expiry",
+							"raw": "{{baseUrl}}/api/update-expiry",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"api",
 								"update-expiry"
 							]
 						}

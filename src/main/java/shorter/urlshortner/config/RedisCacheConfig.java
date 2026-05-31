@@ -35,11 +35,9 @@ public class RedisCacheConfig {
                 JsonTypeInfo.As.PROPERTY
         );
 
-        // ✅ Create serializer with type info
         GenericJackson2JsonRedisSerializer serializer =
                 new GenericJackson2JsonRedisSerializer(objectMapper);
 
-        // ✅ Apply serializer to cache config
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofMinutes(30))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
