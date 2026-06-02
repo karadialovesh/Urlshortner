@@ -31,6 +31,7 @@ public class UrlService {
     public CachedShortUrl getOriginalUrlFromCache(String shortCode) {
         ShortUrl entity = shortUrlRepo.findByShortCode(shortCode)
                 .orElseThrow(() -> new RuntimeException("Short code not found"));
+        System.out.println("DB hit here");
 
         return new CachedShortUrl(
                 entity.getShortCode(),
