@@ -74,3 +74,31 @@ Here is a quick rundown of the endpoints:
 - GET /admin/urls : See every link in the system.
 - GET /admin/stats : Check out the total clicks across the platform.
 - DELETE /admin/url/{id} : Remove a link from the database.
+
+# AWS Deployment
+
+To make the project production-ready, I deployed it on AWS and integrated several cloud services. This gave me hands-on experience with real-world deployment, infrastructure, and secure configuration management.
+
+Amazon Elastic Beanstalk: The Spring Boot application is deployed on Elastic Beanstalk, which handles provisioning, deployment, monitoring, and scaling.
+
+Amazon RDS (MySQL): Instead of running MySQL locally, the production database is hosted on Amazon RDS. This provides automated backups, high availability, and managed database operations.
+
+Amazon ElastiCache (Redis): Redis caching is powered by ElastiCache to speed up URL lookups and reduce database load for frequently accessed links.
+
+Amazon S3: Generated QR codes are uploaded and stored in S3, making them easily accessible without storing image files on the application server.
+
+AWS Secrets Manager: Sensitive information such as database credentials, JWT secrets, AWS keys, and application configuration are securely managed through Secrets Manager instead of being hardcoded.
+
+Security Groups & VPC Networking: The application, database, and Redis cache communicate securely within AWS networking using Security Groups and VPC configuration.
+
+Production Deployment Challenges Solved:
+
+* Configured Spring Boot to run correctly behind Elastic Beanstalk and Nginx.
+* Connected Elastic Beanstalk with RDS and ElastiCache.
+* Integrated AWS Secrets Manager for secure configuration loading.
+* Resolved networking and security group issues between EC2, RDS, and Redis.
+* Configured environment variables and deployment settings for production use.
+
+Live Application:
+http://finalurlshortner-env.eba-jbirxfhw.ap-south-1.elasticbeanstalk.com/home
+
