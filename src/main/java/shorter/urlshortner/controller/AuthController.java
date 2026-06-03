@@ -29,6 +29,6 @@ public class AuthController {
     @GetMapping("/home")
     public ResponseEntity<String> home() {
 
-        return ResponseEntity.ok("home ths");
+        return ResponseEntity.ok("AWS is working fine. It is home page");
     }
 }

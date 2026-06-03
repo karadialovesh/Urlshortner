@@ -12,6 +12,7 @@ import shorter.urlshortner.config.SecretsManagerConfig;
 public class UrlshortnerApplication {
 
 	public static void main(String[] args) {
+		//SpringApplication.run(UrlshortnerApplication.class, args);
 		SpringApplication app =
 				new SpringApplication(UrlshortnerApplication.class);
 		app.addInitializers(new SecretsManagerConfig());

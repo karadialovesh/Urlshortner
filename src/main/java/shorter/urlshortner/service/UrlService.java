@@ -1,6 +1,8 @@
 package shorter.urlshortner.service;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class UrlService {
 
     private final ShortUrlRepository shortUrlRepo;
     private final UserRepository userRepo;
+    @Value("${app.base-url}")
+    private String baseUrl;
 
     @Cacheable(value = "shortUrls", key = "#shortCode")
     public CachedShortUrl getOriginalUrlFromCache(String shortCode) {
@@ -52,7 +56,7 @@ public class UrlService {
         Optional<ShortUrl> existing = shortUrlRepo.findByUserAndOriginalUrl(user, request.getOriginalUrl());
         if (existing.isPresent()) {
             return new ShortenUrlResponse(
-                    "http://localhost:8080/u/" + existing.get().getShortCode(),
+                    baseUrl+"/u/" + existing.get().getShortCode(),
                     "This URL was already shortened. Returning the existing short link."
             );
         }
@@ -87,7 +91,7 @@ public class UrlService {
 
         shortUrlRepo.save(shortUrl);
 
-        return new ShortenUrlResponse("http://localhost:8080/u/" + shortCode,
+        return new ShortenUrlResponse(baseUrl+"/u/" + shortCode,
                 request.getCustomCode() != null ? "Custom short URL created successfully."
                         : "Short URL created successfully.");
     }

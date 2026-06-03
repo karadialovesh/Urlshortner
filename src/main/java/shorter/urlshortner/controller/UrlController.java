@@ -30,7 +30,7 @@ public class UrlController {
             if (principal instanceof org.springframework.security.core.userdetails.UserDetails userDetails) {
                 return userDetails.getUsername();
             }
-            return principal.toString(); // If stored as string (e.g., in JWT)
+            return principal.toString();
         }
         throw new RuntimeException("Unauthorized");
     }
